@@ -20,6 +20,17 @@ const HouseContextProvider = ({ children }) => {
     setCountries(uniqueCountries);
   }, []);
 
+  useEffect(() => {
+    const allProperties = houses.map((house) => {
+      return house.type;
+    });
+    const uniqueProperties = ['Location (any)', ...new Set(allProperties)];
+    setProperties(uniqueProperties);
+  }, []);
+
+  const handleClick = () => {
+    console.log('clicked');
+  }
 
   return (
     <HouseContext.Provider value={{
@@ -32,7 +43,8 @@ const HouseContextProvider = ({ children }) => {
       price,
       setPrice,
       houses,
-      loading
+      loading,
+      handleClick,
     }}>
       {children}
     </HouseContext.Provider>
